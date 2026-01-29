@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayyul Coffee Shop | The Art of Premium Brewing</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- PROFESSIONAL CSS CORE --- */
+        :root {
+            --primary: #2C1810;      /* Espresso Dark */
+            --accent: #D4AF37;       /* Metallic Gold */
+            --bg-light: #FBF8F1;     /* Cream Bone */
+            --text-main: #333333;
+            --text-muted: #777777;
+            --glass: rgba(255, 255, 255, 0.85);
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* --- Navigation Luxury --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+        }
+
+        nav.scrolled {
+            padding: 15px 10%;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Parallax --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        .btn-gold {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 18px 45px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .btn-gold:hover {
+            color: var(--primary);
+            background-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- Menu Section --- */
+        .section {
+            padding: 120px 10%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+
+        .menu-item {
+            background: #fff;
+            transition: var(--transition-smooth);
+            border-bottom: 3px solid transparent;
+        }
+
+        .menu-img-wrapper {
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .menu-item:hover .menu-img {
+            transform: scale(1.1);
+        }
+
+        .menu-item:hover {
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .menu-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .menu-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Footer Luxury --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 100px 10% 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            opacity: 0.6;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 968px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .nav-links { display: none; }
+            .section { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="mainNav">
+        <a href="#" class="logo">Ayyul<span>Coffee.</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu Selection</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div style="color: var(--accent); cursor: pointer; font-size: 1.2rem;" class="mobile-icon">☰</div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p>Sejak 2026</p>
+            <h1>Kebahagiaan dalam <br><i>Satu Cangkir</i></h1>
+            <a href="#menu" class="btn-gold">Eksplorasi Cita Rasa</a>
+        </div>
+    </section>
+
+    <section class="section" id="menu">
+        <div class="section-header">
+            <h2>The Signature Selection</h2>
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?q=80&w=800" alt="Espresso" class="menu-img">
+                </div>
+                <div class="menu-info">
+                    <h3>Golden Espresso</h3>
+                    <p>Biji Arabika pilihan dengan crema keemasan yang sempurna.</p>
+                    <span class="price">IDR 32K</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1534706936160-d5ee67737249?q=80&w=800" alt="Latte" class="menu-img">
+                </div>
+                <div class="menu-info">
+                    <h3>Velvet Cappuccino</h3>
+                    <p>Tekstur susu lembut berpadu dengan aroma kopi yang kuat.</p>
+                    <span class="price">IDR 38K</span>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=800" alt="Iced Coffee" class="menu-img">
+                </div>
+                <div class="menu-info">
+                    <h3>Cold Brew Reserve</h3>
+                    <p>Diseduh perlahan selama 24 jam untuk kesegaran murni.</p>
+                    <span class="price">IDR 42K</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>Ayyul<span>Coffee.</span></h2>
+                <p>Mendedikasikan setiap biji kopi untuk menciptakan momen tak terlupakan bagi Anda.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">Story</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Kontak</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                    <li><a href="#">Jakarta, Indonesia</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; opacity: 0.4; font-size: 0.8rem; letter-spacing: 1px;">
+            &copy; 2026 AYYUL COFFEE ROASTERS. PREMIUM QUALITY.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Navbar Scroll Effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Reveal Animation on Scroll
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(40px)";
+            el.style.transition = "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)";
+            revealOnScroll.observe(el);
+        });
+
+        // 3. Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
